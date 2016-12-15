@@ -1,4 +1,4 @@
-package su.postlink;
+package su.postlink.protoc;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Created by aleksandr on 14.12.16.
  */
-public class ProtobufTest extends Assert{
+public class MessageTest extends Assert{
 
     Message.Body.Builder message = new Message.Body.Builder();
     Long time = System.currentTimeMillis();

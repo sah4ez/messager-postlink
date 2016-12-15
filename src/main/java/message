@@ -1,6 +1,6 @@
 package postlink;
 
-option java_package = "su.postlink";
+option java_package = "su.postlink.protoc";
 option java_outer_classname = "Message";
 
 message Body{
