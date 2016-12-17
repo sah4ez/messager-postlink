@@ -35,7 +35,9 @@ public class MessagerHandler extends ReplayingDecoder {
         byte[] buffArr = new byte[length];
         for (int i = 0; i < length; ++i)
             buffArr[i] = buffer.getByte(i);
-        return Message.Body.parseFrom(buffArr);
+
+        message = Message.Body.parseFrom(buffArr);
+        return message;
     }
 
 }

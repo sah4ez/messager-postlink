@@ -1,6 +1,5 @@
 package su.postlink;
 
-import com.google.protobuf.InvalidProtocolBufferException;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.ChannelHandlerContext;
@@ -34,23 +33,6 @@ public class MessagerServerHandlerTest extends Assert {
         ChannelBuffer channelBuffer = ChannelBuffers.dynamicBuffer();
         channelBuffer.writeBytes(msg.build().toByteArray());
         return channelBuffer;
-    }
-
-    @Test
-    public void testCreateByteArray() {
-        ChannelBuffer buffer = message();
-
-        int length = buffer.writerIndex();
-        byte[] buffArr = new byte[length];
-        for (int i = 0; i < length; ++i)
-            buffArr[i] = buffer.getByte(i);
-        Message.Body msg2 = null;
-        try {
-            msg2 = Message.Body.parseFrom(buffArr);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        assertEquals(msg.build(), msg2);
     }
 
     @Test
