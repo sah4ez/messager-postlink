@@ -55,7 +55,7 @@ public class ServerTest extends Assert {
             }
         } catch (SQLException e) {
         }
-        assertEquals(6, server.countUsers());
+        assertEquals(6, server.countRegisterUsers());
     }
 
 }

@@ -1,21 +1,14 @@
 package su.postlink;
 
-import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
-import io.netty.channel.local.LocalAddress;
-import io.netty.channel.local.LocalChannel;
-import io.netty.channel.local.LocalServerChannel;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
+import org.jboss.netty.bootstrap.ServerBootstrap;
+import org.jboss.netty.channel.Channel;
+import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
+import org.jboss.netty.handler.execution.OrderedMemoryAwareThreadPoolExecutor;
 import su.postlink.protoc.Message;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.sql.ResultSet;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -25,82 +18,38 @@ public class Server {
 
     private ConcurrentSkipListSet<User> allUser = new ConcurrentSkipListSet<>();
     private ConcurrentHashMap<User, Host> connected = new ConcurrentHashMap<>();
-    private AtomicInteger countUsers = new AtomicInteger(0);
-    private ForkJoinPool es = ForkJoinPool.commonPool();
 
+    private ExecutorService innerExec;
+    private ExecutorService bossExec;
+    private ExecutorService ioExec;
+    private ServerBootstrap networkServer;
 
-    private MessagerServerHandler handler = new MessagerServerHandler(this);
-
+    private MessagerHandler handler = new MessagerHandler();
     private Host current = new Host("127.0.0.1", 8000);
+    private Channel channel;
 
-    private LocalAddress addr = new LocalAddress(current.getPort().toString());
-
-    public Server(Host host){
+    public Server(Host host) {
         current = host;
+        bossExec = new OrderedMemoryAwareThreadPoolExecutor(1,
+                400000000,
+                2000000000,
+                60,
+                TimeUnit.SECONDS);
+        ioExec = new OrderedMemoryAwareThreadPoolExecutor(4,
+                400000000,
+                2000000000,
+                60,
+                TimeUnit.SECONDS);
+        networkServer = new ServerBootstrap(new NioServerSocketChannelFactory(
+                bossExec, ioExec, 4));
+        innerExec = Executors.newFixedThreadPool(4);
     }
 
-    public void run() throws Exception{
-        EventLoopGroup serverGroup = new DefaultEventLoop();
-        EventLoopGroup clientGroup = new NioEventLoopGroup();
-        try {
-            ServerBootstrap sb = new ServerBootstrap();
-            sb.group(serverGroup)
-                    .channel(LocalServerChannel.class)
-                    .handler(new ChannelInitializer<LocalServerChannel>() {
-                        @Override
-                        public void initChannel(LocalServerChannel ch) throws Exception {
-                            ch.pipeline().addLast(new LoggingHandler(LogLevel.INFO));
-                        }
-                    })
-                    .childHandler(new ChannelInitializer<LocalChannel>() {
-                        @Override
-                        public void initChannel(LocalChannel ch) throws Exception {
-                            ch.pipeline().addLast(
-                                    new LoggingHandler(LogLevel.INFO),
-                                    handler);
-                        }
-                    });
-
-            Bootstrap cb = new Bootstrap();
-            cb.group(clientGroup)
-                    .channel(LocalChannel.class)
-                    .handler(new ChannelInitializer<LocalChannel>() {
-                        @Override
-                        public void initChannel(LocalChannel ch) throws Exception {
-                            ch.pipeline().addLast(
-                                    new LoggingHandler(LogLevel.INFO),
-                                    handler);
-                        }
-                    });
-
-            // Start the server.
-            sb.bind(addr).sync();
-
-            // Start the client.
-            Channel ch = cb.connect(addr).sync().channel();
-
-            // Read commands from the stdin.
-            System.out.println("Enter text (quit to end)");
-            ChannelFuture lastWriteFuture = null;
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            for (; ; ) {
-                String line = in.readLine();
-                if (line == null || "quit".equalsIgnoreCase(line)) {
-                    break;
-                }
-
-                // Sends the received line to the server.
-                lastWriteFuture = ch.writeAndFlush(line);
-            }
-
-            // Wait until all messages are flushed before closing the channel.
-            if (lastWriteFuture != null) {
-                lastWriteFuture.awaitUninterruptibly();
-            }
-        } finally {
-            serverGroup.shutdownGracefully();
-            clientGroup.shutdownGracefully();
-        }
+    public void run() throws Exception {
+        networkServer.setOption("backlog", 500);
+        networkServer.setOption("connectTimeoutMillis", 10000);
+        networkServer.setPipelineFactory(new ServerPipelineFactory());
+        channel = networkServer.bind(new InetSocketAddress(current.getHost(), current.getPort()));
     }
 
     public boolean login() {
@@ -125,32 +74,26 @@ public class Server {
         return current;
     }
 
-    public void loadRegisterUser(ResultSet rs){
-        RecursiveAction task = new RecursiveAction() {
-            @Override
-            public void compute() {
-                User user = new User(rs);
-                allUser.add(user);
-                countUsers.incrementAndGet();
-            }
+    public void loadRegisterUser(ResultSet rs) {
+        Runnable task = () -> {
+            User user = new User(rs);
+            allUser.add(user);
         };
-        es.invoke(task);
-        task.fork();
-        task.join();
-//        return task.join();
+        try {
+            innerExec.submit(task).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void send(Message.Body message) {
-        RecursiveAction task = new RecursiveAction() {
-            @Override
-            protected void compute() {
-
-            }
-        };
 
     }
 
-    public int countUsers(){
-        return countUsers.get();
+    public int countRegisterUsers() {
+        return allUser.size();
     }
 }

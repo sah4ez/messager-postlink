@@ -26,7 +26,7 @@ public class User implements Comparable{
         } catch (SQLException e) {
         }
         try {
-            setNickName(rs.getString("nameName"));
+            setNickName(rs.getString("nickName"));
         } catch (SQLException e) {
         }
     }

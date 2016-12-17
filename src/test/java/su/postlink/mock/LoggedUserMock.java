@@ -17,8 +17,8 @@ public final class LoggedUserMock {
                     .thenReturn(2)
                     .thenReturn(3)
                     .thenReturn(4)
-                    .thenReturn(4)
-                    .thenReturn(5);
+                    .thenReturn(5)
+                    .thenReturn(6);
             Mockito.when(rs.getString("nickName")).thenReturn("name1")
                     .thenReturn("name2")
                     .thenReturn("name3")

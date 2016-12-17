@@ -1,6 +1,10 @@
 package su.postlink;
 
-import io.netty.channel.ChannelHandlerContext;
+import com.google.protobuf.InvalidProtocolBufferException;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+import org.jboss.netty.channel.ChannelHandlerContext;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -9,8 +13,8 @@ import su.postlink.protoc.Message;
 /**
  * Created by aleksandr on 15.12.16.
  */
-public class MessagerServerHandlerTest {
-    MessagerServerHandler handler;
+public class MessagerServerHandlerTest extends Assert {
+    MessagerHandler handler;
     Message.Body.Builder msg;
 
     User user = new User(2, "nick2");
@@ -18,33 +22,41 @@ public class MessagerServerHandlerTest {
 
     @Before
     public void setUp() throws Exception {
-        handler = new MessagerServerHandler(null);
+        handler = new MessagerHandler();
         msg = new Message.Body.Builder();
         msg.setIdTo(1).setNickNameTo("nick1");
         msg.setIdFrom(user.getId()).setNickNameFrom(user.getNickName());
         msg.setDate(System.currentTimeMillis()).setBody("Hello World");
-        Mockito.when(ctx.write(0)).thenReturn(null);
-        Mockito.when(ctx.flush()).thenReturn(null);
-        Mockito.when(ctx.close()).thenReturn(null);
 
     }
 
-    private Object message(){
-        return msg.build().toByteArray();
+    private ChannelBuffer message() {
+        ChannelBuffer channelBuffer = ChannelBuffers.dynamicBuffer();
+        channelBuffer.writeBytes(msg.build().toByteArray());
+        return channelBuffer;
+    }
+
+    @Test
+    public void testCreateByteArray() {
+        ChannelBuffer buffer = message();
+
+        int length = buffer.writerIndex();
+        byte[] buffArr = new byte[length];
+        for (int i = 0; i < length; ++i)
+            buffArr[i] = buffer.getByte(i);
+        Message.Body msg2 = null;
+        try {
+            msg2 = Message.Body.parseFrom(buffArr);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        assertEquals(msg.build(), msg2);
     }
 
     @Test
     public void channelRead() throws Exception {
-        handler.channelRead(ctx, message());
+        Object o = handler.decode(ctx, null, message(), null);
+        assertEquals(msg.build(), o);
     }
 
-    @Test
-    public void channelReadComplete() throws Exception {
-        handler.channelReadComplete(ctx);
-    }
-
-    @Test
-    public void exceptionCaught() throws Exception {
-        handler.exceptionCaught(ctx, new Exception());
-    }
 }
