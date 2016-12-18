@@ -43,7 +43,7 @@ public final class Registration {
     private Body(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Body() {
+    public Body() {
       nickName_ = "";
     }
 

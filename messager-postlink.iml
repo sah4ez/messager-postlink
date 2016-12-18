@@ -15,6 +15,6 @@
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.6.Final" level="project" />
     <orderEntry type="library" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.1.0" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty:3.5.2.Final" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
   </component>
 </module>

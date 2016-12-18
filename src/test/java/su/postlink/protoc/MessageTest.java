@@ -16,20 +16,25 @@ public class MessageTest extends Assert{
     public void setUp() {
         message.setDate(time)
                 .setBody("hello")
-                .setIdFrom(1)
                 .setNickNameFrom("vasya")
-                .setIdTo(2)
                 .setNickNameTo("kolya").build();
     }
 
     @Test
-    public void test() {
+    public void MsgTest() {
         assertEquals("hello", message.getBody());
         assertEquals(time.longValue(), message.getDate());
-        assertEquals(1, message.getIdFrom());
         assertEquals("vasya", message.getNickNameFrom());
-        assertEquals(2, message.getIdTo());
         assertEquals("kolya", message.getNickNameTo());
+    }
+
+    @Test
+    public void hasPropertyTest(){
+        assertTrue(message.hasNickNameTo());
+        assertTrue(message.hasNickNameFrom());
+        assertTrue(message.hasDate());
+        assertTrue(message.hasBody());
+
     }
 
 }

@@ -7,11 +7,9 @@ message Body{
         required int64 date = 1;
         required string body = 2;
 
-        required int32 idFrom = 3;
-        required string nickNameFrom = 4;
+        required string nickNameFrom = 3;
 
-        required int32 idTo = 6;
-        required string nickNameTo = 7;
+        required string nickNameTo = 4;
 }
 
 

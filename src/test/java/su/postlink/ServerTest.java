@@ -1,9 +1,13 @@
 package su.postlink;
 
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import su.postlink.mock.LoggedUserMock;
+import su.postlink.protoc.Message;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,21 +17,25 @@ import java.sql.SQLException;
  */
 public class ServerTest extends Assert {
     private Server server;
-    private Host host = new Host("127.0.0.1", 8888);
+    Channel ch1 = Mockito.mock(Channel.class);
+    Channel ch2 = Mockito.mock(Channel.class);
+    ChannelFuture channelFuture = Mockito.mock(ChannelFuture.class);
+    User user1 = new User(1, "name1");
+    User user2 = new User(2, "name2");
+
 
     @Before
     public void setUp() throws Exception {
-        server = new Server(host);
-    }
+        server = new Server("127.0.0.1", 8888);
+        Mockito.when(ch1.isOpen()).thenReturn(true).thenReturn(false);
+        Mockito.when(ch1.write(new Object())).thenReturn(channelFuture);
+        Mockito.when(ch2.isOpen()).thenReturn(true).thenReturn(false);
+        Mockito.when(ch2.write(new Object())).thenReturn(channelFuture);
+        server.registration(user1);
+        server.registration(user2);
 
-    @Test
-    public void login() throws Exception {
-        assertFalse(server.login());
-    }
-
-    @Test
-    public void register() throws Exception {
-        assertFalse(server.register());
+        server.login(user1, ch1);
+        server.login(user2, ch2);
     }
 
     @Test
@@ -41,12 +49,6 @@ public class ServerTest extends Assert {
     }
 
     @Test
-    public void getCurrent() throws Exception {
-        assertEquals("127.0.0.1", server.getCurrent().getHost());
-        assertEquals(8888, server.getCurrent().getPort().intValue());
-    }
-
-    @Test
     public void testLoadUser() {
         try {
             ResultSet rs = LoggedUserMock.resultSet();
@@ -56,6 +58,32 @@ public class ServerTest extends Assert {
         } catch (SQLException e) {
         }
         assertEquals(6, server.countRegisterUsers());
+        assertEquals(-1, server.getRegisterUser("nickName6").getId().intValue());
+        assertEquals(6, server.getRegisterUser("name6").getId().intValue());
+    }
+
+    @Test
+    public void testSendMessage() {
+        Message.Body.Builder msg = new Message.Body.Builder();
+        msg.setDate(System.currentTimeMillis());
+        msg.setBody("hello");
+        msg.setNickNameFrom(user1.getNickName());
+        msg.setNickNameTo(user2.getNickName());
+
+        assertTrue(server.send(msg.build()));
+        assertFalse(server.send(msg.build()));
+    }
+
+    @Test
+    public void testSendListUser(){
+        Message.Body.Builder msg = new Message.Body.Builder();
+        msg.setDate(System.currentTimeMillis());
+        msg.setBody("hello");
+        msg.setNickNameFrom(user1.getNickName());
+        msg.setNickNameTo(user1.getNickName());
+
+        assertTrue(server.sendListUser(msg.build()));
+        assertFalse(server.sendListUser(msg.build()));
     }
 
 }

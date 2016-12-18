@@ -8,8 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Host host = new Host("localhost", 8888);
-        Server server = new Server(host);
+        Server server = new Server("127.0.0.1", 8888);
         try {
             server.run();
         } catch (Exception e) {

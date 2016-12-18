@@ -31,29 +31,6 @@ public final class Login {
      */
     com.google.protobuf.ByteString
         getNickNameBytes();
-
-    /**
-     * <code>required string host = 2;</code>
-     */
-    boolean hasHost();
-    /**
-     * <code>required string host = 2;</code>
-     */
-    java.lang.String getHost();
-    /**
-     * <code>required string host = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getHostBytes();
-
-    /**
-     * <code>required int32 port = 3;</code>
-     */
-    boolean hasPort();
-    /**
-     * <code>required int32 port = 3;</code>
-     */
-    int getPort();
   }
   /**
    * Protobuf type {@code postlin.Body}
@@ -68,8 +45,6 @@ public final class Login {
     }
     private Body() {
       nickName_ = "";
-      host_ = "";
-      port_ = 0;
     }
 
     @java.lang.Override
@@ -106,17 +81,6 @@ public final class Login {
               nickName_ = bs;
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              host_ = bs;
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              port_ = input.readInt32();
-              break;
-            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -131,14 +95,14 @@ public final class Login {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Login.internal_static_postlin_Body_descriptor;
+      return su.postlink.protoc.Login.internal_static_postlin_Body_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Login.internal_static_postlin_Body_fieldAccessorTable
+      return su.postlink.protoc.Login.internal_static_postlin_Body_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Login.Body.class, Login.Body.Builder.class);
+              su.postlink.protoc.Login.Body.class, su.postlink.protoc.Login.Body.Builder.class);
     }
 
     private int bitField0_;
@@ -184,63 +148,6 @@ public final class Login {
       }
     }
 
-    public static final int HOST_FIELD_NUMBER = 2;
-    private volatile java.lang.Object host_;
-    /**
-     * <code>required string host = 2;</code>
-     */
-    public boolean hasHost() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required string host = 2;</code>
-     */
-    public java.lang.String getHost() {
-      java.lang.Object ref = host_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          host_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string host = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getHostBytes() {
-      java.lang.Object ref = host_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        host_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PORT_FIELD_NUMBER = 3;
-    private int port_;
-    /**
-     * <code>required int32 port = 3;</code>
-     */
-    public boolean hasPort() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>required int32 port = 3;</code>
-     */
-    public int getPort() {
-      return port_;
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -248,14 +155,6 @@ public final class Login {
       if (isInitialized == 0) return false;
 
       if (!hasNickName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasHost()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPort()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -268,12 +167,6 @@ public final class Login {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nickName_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, host_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, port_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -284,13 +177,6 @@ public final class Login {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nickName_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, host_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, port_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -303,26 +189,16 @@ public final class Login {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Login.Body)) {
+      if (!(obj instanceof su.postlink.protoc.Login.Body)) {
         return super.equals(obj);
       }
-      Login.Body other = (Login.Body) obj;
+      su.postlink.protoc.Login.Body other = (su.postlink.protoc.Login.Body) obj;
 
       boolean result = true;
       result = result && (hasNickName() == other.hasNickName());
       if (hasNickName()) {
         result = result && getNickName()
             .equals(other.getNickName());
-      }
-      result = result && (hasHost() == other.hasHost());
-      if (hasHost()) {
-        result = result && getHost()
-            .equals(other.getHost());
-      }
-      result = result && (hasPort() == other.hasPort());
-      if (hasPort()) {
-        result = result && (getPort()
-            == other.getPort());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -339,71 +215,63 @@ public final class Login {
         hash = (37 * hash) + NICKNAME_FIELD_NUMBER;
         hash = (53 * hash) + getNickName().hashCode();
       }
-      if (hasHost()) {
-        hash = (37 * hash) + HOST_FIELD_NUMBER;
-        hash = (53 * hash) + getHost().hashCode();
-      }
-      if (hasPort()) {
-        hash = (37 * hash) + PORT_FIELD_NUMBER;
-        hash = (53 * hash) + getPort();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Login.Body parseFrom(byte[] data)
+    public static su.postlink.protoc.Login.Body parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Login.Body parseFrom(java.io.InputStream input)
+    public static su.postlink.protoc.Login.Body parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Login.Body parseDelimitedFrom(java.io.InputStream input)
+    public static su.postlink.protoc.Login.Body parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Login.Body parseDelimitedFrom(
+    public static su.postlink.protoc.Login.Body parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Login.Body parseFrom(
+    public static su.postlink.protoc.Login.Body parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -415,7 +283,7 @@ public final class Login {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Login.Body prototype) {
+    public static Builder newBuilder(su.postlink.protoc.Login.Body prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -435,17 +303,17 @@ public final class Login {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:postlin.Body)
-        Login.BodyOrBuilder {
+        su.postlink.protoc.Login.BodyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Login.internal_static_postlin_Body_descriptor;
+        return su.postlink.protoc.Login.internal_static_postlin_Body_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Login.internal_static_postlin_Body_fieldAccessorTable
+        return su.postlink.protoc.Login.internal_static_postlin_Body_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Login.Body.class, Login.Body.Builder.class);
+                su.postlink.protoc.Login.Body.class, su.postlink.protoc.Login.Body.Builder.class);
       }
 
       // Construct using su.postlink.protoc.Login.Body.newBuilder()
@@ -467,46 +335,34 @@ public final class Login {
         super.clear();
         nickName_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        host_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        port_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Login.internal_static_postlin_Body_descriptor;
+        return su.postlink.protoc.Login.internal_static_postlin_Body_descriptor;
       }
 
-      public Login.Body getDefaultInstanceForType() {
-        return Login.Body.getDefaultInstance();
+      public su.postlink.protoc.Login.Body getDefaultInstanceForType() {
+        return su.postlink.protoc.Login.Body.getDefaultInstance();
       }
 
-      public Login.Body build() {
-        Login.Body result = buildPartial();
+      public su.postlink.protoc.Login.Body build() {
+        su.postlink.protoc.Login.Body result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public Login.Body buildPartial() {
-        Login.Body result = new Login.Body(this);
+      public su.postlink.protoc.Login.Body buildPartial() {
+        su.postlink.protoc.Login.Body result = new su.postlink.protoc.Login.Body(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
         result.nickName_ = nickName_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.host_ = host_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.port_ = port_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -539,28 +395,20 @@ public final class Login {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Login.Body) {
-          return mergeFrom((Login.Body)other);
+        if (other instanceof su.postlink.protoc.Login.Body) {
+          return mergeFrom((su.postlink.protoc.Login.Body)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Login.Body other) {
-        if (other == Login.Body.getDefaultInstance()) return this;
+      public Builder mergeFrom(su.postlink.protoc.Login.Body other) {
+        if (other == su.postlink.protoc.Login.Body.getDefaultInstance()) return this;
         if (other.hasNickName()) {
           bitField0_ |= 0x00000001;
           nickName_ = other.nickName_;
           onChanged();
-        }
-        if (other.hasHost()) {
-          bitField0_ |= 0x00000002;
-          host_ = other.host_;
-          onChanged();
-        }
-        if (other.hasPort()) {
-          setPort(other.getPort());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -571,12 +419,6 @@ public final class Login {
         if (!hasNickName()) {
           return false;
         }
-        if (!hasHost()) {
-          return false;
-        }
-        if (!hasPort()) {
-          return false;
-        }
         return true;
       }
 
@@ -584,11 +426,11 @@ public final class Login {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Login.Body parsedMessage = null;
+        su.postlink.protoc.Login.Body parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Login.Body) e.getUnfinishedMessage();
+          parsedMessage = (su.postlink.protoc.Login.Body) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -674,114 +516,6 @@ public final class Login {
         onChanged();
         return this;
       }
-
-      private java.lang.Object host_ = "";
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public boolean hasHost() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public java.lang.String getHost() {
-        java.lang.Object ref = host_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            host_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getHostBytes() {
-        java.lang.Object ref = host_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          host_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public Builder setHost(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        host_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public Builder clearHost() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        host_ = getDefaultInstance().getHost();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string host = 2;</code>
-       */
-      public Builder setHostBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        host_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int port_ ;
-      /**
-       * <code>required int32 port = 3;</code>
-       */
-      public boolean hasPort() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>required int32 port = 3;</code>
-       */
-      public int getPort() {
-        return port_;
-      }
-      /**
-       * <code>required int32 port = 3;</code>
-       */
-      public Builder setPort(int value) {
-        bitField0_ |= 0x00000004;
-        port_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 port = 3;</code>
-       */
-      public Builder clearPort() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        port_ = 0;
-        onChanged();
-        return this;
-      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
@@ -797,12 +531,12 @@ public final class Login {
     }
 
     // @@protoc_insertion_point(class_scope:postlin.Body)
-    private static final Login.Body DEFAULT_INSTANCE;
+    private static final su.postlink.protoc.Login.Body DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Login.Body();
+      DEFAULT_INSTANCE = new su.postlink.protoc.Login.Body();
     }
 
-    public static Login.Body getDefaultInstance() {
+    public static su.postlink.protoc.Login.Body getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -825,7 +559,7 @@ public final class Login {
       return PARSER;
     }
 
-    public Login.Body getDefaultInstanceForType() {
+    public su.postlink.protoc.Login.Body getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -845,9 +579,8 @@ public final class Login {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\005login\022\007postlin\"4\n\004Body\022\020\n\010nickName\030\001 \002" +
-      "(\t\022\014\n\004host\030\002 \002(\t\022\014\n\004port\030\003 \002(\005B\024\n\013su.pos" +
-      "tlinkB\005Login"
+      "\n\005login\022\007postlin\"\030\n\004Body\022\020\n\010nickName\030\001 \002" +
+      "(\tB\033\n\022su.postlink.protocB\005Login"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -866,7 +599,7 @@ public final class Login {
     internal_static_postlin_Body_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_postlin_Body_descriptor,
-        new java.lang.String[] { "NickName", "Host", "Port", });
+        new java.lang.String[] { "NickName", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

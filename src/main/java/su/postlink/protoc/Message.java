@@ -42,47 +42,29 @@ public final class Message {
         getBodyBytes();
 
     /**
-     * <code>required int32 idFrom = 3;</code>
-     */
-    boolean hasIdFrom();
-    /**
-     * <code>required int32 idFrom = 3;</code>
-     */
-    int getIdFrom();
-
-    /**
-     * <code>required string nickNameFrom = 4;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
     boolean hasNickNameFrom();
     /**
-     * <code>required string nickNameFrom = 4;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
     java.lang.String getNickNameFrom();
     /**
-     * <code>required string nickNameFrom = 4;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
     com.google.protobuf.ByteString
         getNickNameFromBytes();
 
     /**
-     * <code>required int32 idTo = 6;</code>
-     */
-    boolean hasIdTo();
-    /**
-     * <code>required int32 idTo = 6;</code>
-     */
-    int getIdTo();
-
-    /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     boolean hasNickNameTo();
     /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     java.lang.String getNickNameTo();
     /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     com.google.protobuf.ByteString
         getNickNameToBytes();
@@ -101,9 +83,7 @@ public final class Message {
     public Body() {
       date_ = 0L;
       body_ = "";
-      idFrom_ = 0;
       nickNameFrom_ = "";
-      idTo_ = 0;
       nickNameTo_ = "";
     }
 
@@ -146,25 +126,15 @@ public final class Message {
               body_ = bs;
               break;
             }
-            case 24: {
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              idFrom_ = input.readInt32();
+              nickNameFrom_ = bs;
               break;
             }
             case 34: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
-              nickNameFrom_ = bs;
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000010;
-              idTo_ = input.readInt32();
-              break;
-            }
-            case 58: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
               nickNameTo_ = bs;
               break;
             }
@@ -182,14 +152,14 @@ public final class Message {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Message.internal_static_postlink_Body_descriptor;
+      return su.postlink.protoc.Message.internal_static_postlink_Body_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Message.internal_static_postlink_Body_fieldAccessorTable
+      return su.postlink.protoc.Message.internal_static_postlink_Body_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Message.Body.class, Message.Body.Builder.class);
+              su.postlink.protoc.Message.Body.class, su.postlink.protoc.Message.Body.Builder.class);
     }
 
     private int bitField0_;
@@ -250,31 +220,16 @@ public final class Message {
       }
     }
 
-    public static final int IDFROM_FIELD_NUMBER = 3;
-    private int idFrom_;
+    public static final int NICKNAMEFROM_FIELD_NUMBER = 3;
+    private volatile java.lang.Object nickNameFrom_;
     /**
-     * <code>required int32 idFrom = 3;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
-    public boolean hasIdFrom() {
+    public boolean hasNickNameFrom() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required int32 idFrom = 3;</code>
-     */
-    public int getIdFrom() {
-      return idFrom_;
-    }
-
-    public static final int NICKNAMEFROM_FIELD_NUMBER = 4;
-    private volatile java.lang.Object nickNameFrom_;
-    /**
-     * <code>required string nickNameFrom = 4;</code>
-     */
-    public boolean hasNickNameFrom() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>required string nickNameFrom = 4;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
     public java.lang.String getNickNameFrom() {
       java.lang.Object ref = nickNameFrom_;
@@ -291,7 +246,7 @@ public final class Message {
       }
     }
     /**
-     * <code>required string nickNameFrom = 4;</code>
+     * <code>required string nickNameFrom = 3;</code>
      */
     public com.google.protobuf.ByteString
         getNickNameFromBytes() {
@@ -307,31 +262,16 @@ public final class Message {
       }
     }
 
-    public static final int IDTO_FIELD_NUMBER = 6;
-    private int idTo_;
-    /**
-     * <code>required int32 idTo = 6;</code>
-     */
-    public boolean hasIdTo() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>required int32 idTo = 6;</code>
-     */
-    public int getIdTo() {
-      return idTo_;
-    }
-
-    public static final int NICKNAMETO_FIELD_NUMBER = 7;
+    public static final int NICKNAMETO_FIELD_NUMBER = 4;
     private volatile java.lang.Object nickNameTo_;
     /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     public boolean hasNickNameTo() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     public java.lang.String getNickNameTo() {
       java.lang.Object ref = nickNameTo_;
@@ -348,7 +288,7 @@ public final class Message {
       }
     }
     /**
-     * <code>required string nickNameTo = 7;</code>
+     * <code>required string nickNameTo = 4;</code>
      */
     public com.google.protobuf.ByteString
         getNickNameToBytes() {
@@ -378,15 +318,7 @@ public final class Message {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasIdFrom()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasNickNameFrom()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasIdTo()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -407,16 +339,10 @@ public final class Message {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, body_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, idFrom_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, nickNameFrom_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, nickNameFrom_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt32(6, idTo_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, nickNameTo_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, nickNameTo_);
       }
       unknownFields.writeTo(output);
     }
@@ -434,18 +360,10 @@ public final class Message {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, body_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, idFrom_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, nickNameFrom_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, nickNameFrom_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, idTo_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, nickNameTo_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, nickNameTo_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -458,10 +376,10 @@ public final class Message {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Message.Body)) {
+      if (!(obj instanceof su.postlink.protoc.Message.Body)) {
         return super.equals(obj);
       }
-      Message.Body other = (Message.Body) obj;
+      su.postlink.protoc.Message.Body other = (su.postlink.protoc.Message.Body) obj;
 
       boolean result = true;
       result = result && (hasDate() == other.hasDate());
@@ -474,20 +392,10 @@ public final class Message {
         result = result && getBody()
             .equals(other.getBody());
       }
-      result = result && (hasIdFrom() == other.hasIdFrom());
-      if (hasIdFrom()) {
-        result = result && (getIdFrom()
-            == other.getIdFrom());
-      }
       result = result && (hasNickNameFrom() == other.hasNickNameFrom());
       if (hasNickNameFrom()) {
         result = result && getNickNameFrom()
             .equals(other.getNickNameFrom());
-      }
-      result = result && (hasIdTo() == other.hasIdTo());
-      if (hasIdTo()) {
-        result = result && (getIdTo()
-            == other.getIdTo());
       }
       result = result && (hasNickNameTo() == other.hasNickNameTo());
       if (hasNickNameTo()) {
@@ -514,17 +422,9 @@ public final class Message {
         hash = (37 * hash) + BODY_FIELD_NUMBER;
         hash = (53 * hash) + getBody().hashCode();
       }
-      if (hasIdFrom()) {
-        hash = (37 * hash) + IDFROM_FIELD_NUMBER;
-        hash = (53 * hash) + getIdFrom();
-      }
       if (hasNickNameFrom()) {
         hash = (37 * hash) + NICKNAMEFROM_FIELD_NUMBER;
         hash = (53 * hash) + getNickNameFrom().hashCode();
-      }
-      if (hasIdTo()) {
-        hash = (37 * hash) + IDTO_FIELD_NUMBER;
-        hash = (53 * hash) + getIdTo();
       }
       if (hasNickNameTo()) {
         hash = (37 * hash) + NICKNAMETO_FIELD_NUMBER;
@@ -535,58 +435,58 @@ public final class Message {
       return hash;
     }
 
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Message.Body parseFrom(byte[] data)
+    public static su.postlink.protoc.Message.Body parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Message.Body parseFrom(java.io.InputStream input)
+    public static su.postlink.protoc.Message.Body parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Message.Body parseDelimitedFrom(java.io.InputStream input)
+    public static su.postlink.protoc.Message.Body parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Message.Body parseDelimitedFrom(
+    public static su.postlink.protoc.Message.Body parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Message.Body parseFrom(
+    public static su.postlink.protoc.Message.Body parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -598,7 +498,7 @@ public final class Message {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Message.Body prototype) {
+    public static Builder newBuilder(su.postlink.protoc.Message.Body prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -618,17 +518,17 @@ public final class Message {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:postlink.Body)
-        Message.BodyOrBuilder {
+        su.postlink.protoc.Message.BodyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Message.internal_static_postlink_Body_descriptor;
+        return su.postlink.protoc.Message.internal_static_postlink_Body_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Message.internal_static_postlink_Body_fieldAccessorTable
+        return su.postlink.protoc.Message.internal_static_postlink_Body_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Message.Body.class, Message.Body.Builder.class);
+                su.postlink.protoc.Message.Body.class, su.postlink.protoc.Message.Body.Builder.class);
       }
 
       // Construct using su.postlink.protoc.Message.Body.newBuilder()
@@ -652,36 +552,32 @@ public final class Message {
         bitField0_ = (bitField0_ & ~0x00000001);
         body_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        idFrom_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         nickNameFrom_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        idTo_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000004);
         nickNameTo_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Message.internal_static_postlink_Body_descriptor;
+        return su.postlink.protoc.Message.internal_static_postlink_Body_descriptor;
       }
 
-      public Message.Body getDefaultInstanceForType() {
-        return Message.Body.getDefaultInstance();
+      public su.postlink.protoc.Message.Body getDefaultInstanceForType() {
+        return su.postlink.protoc.Message.Body.getDefaultInstance();
       }
 
-      public Message.Body build() {
-        Message.Body result = buildPartial();
+      public su.postlink.protoc.Message.Body build() {
+        su.postlink.protoc.Message.Body result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public Message.Body buildPartial() {
-        Message.Body result = new Message.Body(this);
+      public su.postlink.protoc.Message.Body buildPartial() {
+        su.postlink.protoc.Message.Body result = new su.postlink.protoc.Message.Body(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -695,17 +591,9 @@ public final class Message {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.idFrom_ = idFrom_;
+        result.nickNameFrom_ = nickNameFrom_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
-        }
-        result.nickNameFrom_ = nickNameFrom_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.idTo_ = idTo_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
         }
         result.nickNameTo_ = nickNameTo_;
         result.bitField0_ = to_bitField0_;
@@ -740,16 +628,16 @@ public final class Message {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Message.Body) {
-          return mergeFrom((Message.Body)other);
+        if (other instanceof su.postlink.protoc.Message.Body) {
+          return mergeFrom((su.postlink.protoc.Message.Body)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Message.Body other) {
-        if (other == Message.Body.getDefaultInstance()) return this;
+      public Builder mergeFrom(su.postlink.protoc.Message.Body other) {
+        if (other == su.postlink.protoc.Message.Body.getDefaultInstance()) return this;
         if (other.hasDate()) {
           setDate(other.getDate());
         }
@@ -758,19 +646,13 @@ public final class Message {
           body_ = other.body_;
           onChanged();
         }
-        if (other.hasIdFrom()) {
-          setIdFrom(other.getIdFrom());
-        }
         if (other.hasNickNameFrom()) {
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000004;
           nickNameFrom_ = other.nickNameFrom_;
           onChanged();
         }
-        if (other.hasIdTo()) {
-          setIdTo(other.getIdTo());
-        }
         if (other.hasNickNameTo()) {
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000008;
           nickNameTo_ = other.nickNameTo_;
           onChanged();
         }
@@ -786,13 +668,7 @@ public final class Message {
         if (!hasBody()) {
           return false;
         }
-        if (!hasIdFrom()) {
-          return false;
-        }
         if (!hasNickNameFrom()) {
-          return false;
-        }
-        if (!hasIdTo()) {
           return false;
         }
         if (!hasNickNameTo()) {
@@ -805,11 +681,11 @@ public final class Message {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Message.Body parsedMessage = null;
+        su.postlink.protoc.Message.Body parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Message.Body) e.getUnfinishedMessage();
+          parsedMessage = (su.postlink.protoc.Message.Body) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -928,47 +804,15 @@ public final class Message {
         return this;
       }
 
-      private int idFrom_ ;
+      private java.lang.Object nickNameFrom_ = "";
       /**
-       * <code>required int32 idFrom = 3;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
-      public boolean hasIdFrom() {
+      public boolean hasNickNameFrom() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required int32 idFrom = 3;</code>
-       */
-      public int getIdFrom() {
-        return idFrom_;
-      }
-      /**
-       * <code>required int32 idFrom = 3;</code>
-       */
-      public Builder setIdFrom(int value) {
-        bitField0_ |= 0x00000004;
-        idFrom_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 idFrom = 3;</code>
-       */
-      public Builder clearIdFrom() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        idFrom_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object nickNameFrom_ = "";
-      /**
-       * <code>required string nickNameFrom = 4;</code>
-       */
-      public boolean hasNickNameFrom() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>required string nickNameFrom = 4;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
       public java.lang.String getNickNameFrom() {
         java.lang.Object ref = nickNameFrom_;
@@ -985,7 +829,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameFrom = 4;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
       public com.google.protobuf.ByteString
           getNickNameFromBytes() {
@@ -1001,82 +845,50 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameFrom = 4;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
       public Builder setNickNameFrom(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         nickNameFrom_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameFrom = 4;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
       public Builder clearNickNameFrom() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         nickNameFrom_ = getDefaultInstance().getNickNameFrom();
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameFrom = 4;</code>
+       * <code>required string nickNameFrom = 3;</code>
        */
       public Builder setNickNameFromBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         nickNameFrom_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int idTo_ ;
-      /**
-       * <code>required int32 idTo = 6;</code>
-       */
-      public boolean hasIdTo() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>required int32 idTo = 6;</code>
-       */
-      public int getIdTo() {
-        return idTo_;
-      }
-      /**
-       * <code>required int32 idTo = 6;</code>
-       */
-      public Builder setIdTo(int value) {
-        bitField0_ |= 0x00000010;
-        idTo_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 idTo = 6;</code>
-       */
-      public Builder clearIdTo() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        idTo_ = 0;
         onChanged();
         return this;
       }
 
       private java.lang.Object nickNameTo_ = "";
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public boolean hasNickNameTo() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public java.lang.String getNickNameTo() {
         java.lang.Object ref = nickNameTo_;
@@ -1093,7 +905,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public com.google.protobuf.ByteString
           getNickNameToBytes() {
@@ -1109,36 +921,36 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public Builder setNickNameTo(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000008;
         nickNameTo_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public Builder clearNickNameTo() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000008);
         nickNameTo_ = getDefaultInstance().getNickNameTo();
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameTo = 7;</code>
+       * <code>required string nickNameTo = 4;</code>
        */
       public Builder setNickNameToBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000008;
         nickNameTo_ = value;
         onChanged();
         return this;
@@ -1158,12 +970,12 @@ public final class Message {
     }
 
     // @@protoc_insertion_point(class_scope:postlink.Body)
-    private static final Message.Body DEFAULT_INSTANCE;
+    private static final su.postlink.protoc.Message.Body DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Message.Body();
+      DEFAULT_INSTANCE = new su.postlink.protoc.Message.Body();
     }
 
-    public static Message.Body getDefaultInstance() {
+    public static su.postlink.protoc.Message.Body getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1186,7 +998,7 @@ public final class Message {
       return PARSER;
     }
 
-    public Message.Body getDefaultInstanceForType() {
+    public su.postlink.protoc.Message.Body getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1206,10 +1018,10 @@ public final class Message {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\007message\022\010postlink\"j\n\004Body\022\014\n\004date\030\001 \002(" +
-      "\003\022\014\n\004body\030\002 \002(\t\022\016\n\006idFrom\030\003 \002(\005\022\024\n\014nickN" +
-      "ameFrom\030\004 \002(\t\022\014\n\004idTo\030\006 \002(\005\022\022\n\nnickNameT" +
-      "o\030\007 \002(\tB\026\n\013su.postlinkB\007Message"
+      "\n\007message\022\010postlink\"L\n\004Body\022\014\n\004date\030\001 \002(" +
+      "\003\022\014\n\004body\030\002 \002(\t\022\024\n\014nickNameFrom\030\003 \002(\t\022\022\n" +
+      "\nnickNameTo\030\004 \002(\tB\035\n\022su.postlink.protocB" +
+      "\007Message"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1228,7 +1040,7 @@ public final class Message {
     internal_static_postlink_Body_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_postlink_Body_descriptor,
-        new java.lang.String[] { "Date", "Body", "IdFrom", "NickNameFrom", "IdTo", "NickNameTo", });
+        new java.lang.String[] { "Date", "Body", "NickNameFrom", "NickNameTo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
