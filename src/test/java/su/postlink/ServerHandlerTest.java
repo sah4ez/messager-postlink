@@ -9,8 +9,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import su.postlink.mock.ServerMock;
 import su.postlink.protoc.Command;
-import su.postlink.protoc.Login;
-import su.postlink.protoc.Registration;
+import su.postlink.protoc.Message;
 
 /**
  * Created by aleksandr on 18.12.16.
@@ -32,7 +31,8 @@ public class ServerHandlerTest extends Assert {
 
     @Test
     public void channelReadRegistration() throws Exception {
-        Registration.Body.Builder reg = new Registration.Body.Builder();
+        Message.Body.Builder reg = new Message.Body.Builder();
+        reg.setType(1);
         reg.setNickName("nick");
         assertTrue(reg.hasNickName());
         handler.channelRead(ctx, reg.build());
@@ -47,7 +47,8 @@ public class ServerHandlerTest extends Assert {
 
     @Test
     public void channelReadLogin() throws Exception {
-        Login.Body.Builder login = new Login.Body.Builder();
+        Message.Body.Builder login = new Message.Body.Builder();
+        login.setType(2);
         login.setNickName("nick");
         assertTrue(login.hasNickName());
         handler.channelRead(ctx, login.build());

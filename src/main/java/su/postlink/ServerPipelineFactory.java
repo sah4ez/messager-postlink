@@ -26,8 +26,6 @@ public class ServerPipelineFactory extends ChannelInitializer {
         pipeline = channel.pipeline();
 
         pipeline.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
-        pipeline.addLast("protobufDecoderRegistration", new ProtobufDecoder(Registration.Body.getDefaultInstance()));
-        pipeline.addLast("protobufDecoderLogin", new ProtobufDecoder(Login.Body.getDefaultInstance()));
         pipeline.addLast("protobufDecoderMessage", new ProtobufDecoder(Message.Body.getDefaultInstance()));
         pipeline.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
         pipeline.addLast("protobufEncoder", new ProtobufEncoder());

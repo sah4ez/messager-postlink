@@ -4,12 +4,15 @@ option java_package = "su.postlink.protoc";
 option java_outer_classname = "Message";
 
 message Body{
-        required int64 date = 1;
-        required string body = 2;
+        required int32 type = 1;
+        optional int64 date = 2;
+        optional string body = 3;
 
-        required string nickNameFrom = 3;
+        optional string nickName = 4;
 
-        required string nickNameTo = 4;
+        optional string nickNameFrom = 5;
+
+        optional string nickNameTo = 6;
 }
 
 

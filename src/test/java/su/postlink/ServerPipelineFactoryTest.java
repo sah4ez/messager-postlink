@@ -10,9 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import su.postlink.protoc.Login;
 import su.postlink.protoc.Message;
-import su.postlink.protoc.Registration;
 
 /**
  * Created by aleksandr on 18.12.16.
@@ -28,10 +26,6 @@ public class ServerPipelineFactoryTest extends Assert {
         pipelineFactory = new ServerPipelineFactory(server);
         Mockito.when(channel.pipeline()).thenReturn(pipeline);
         Mockito.when(pipeline.get("frameDecoder")).thenReturn(new ProtobufVarint32FrameDecoder());
-        Mockito.when(pipeline.get("protobufDecoderRegistration")).
-                thenReturn(new ProtobufDecoder(Registration.Body.getDefaultInstance()));
-        Mockito.when(pipeline.get("protobufDecoderLogin")).
-                thenReturn(new ProtobufDecoder(Login.Body.getDefaultInstance()));
         Mockito.when(pipeline.get("protobufDecoderMessage")).
                 thenReturn(new ProtobufDecoder(Message.Body.getDefaultInstance()));
         Mockito.when(pipeline.get("frameEncoder")).thenReturn(new ProtobufVarint32LengthFieldPrepender());
@@ -44,8 +38,6 @@ public class ServerPipelineFactoryTest extends Assert {
         pipelineFactory.initChannel(channel);
         ChannelPipeline pipeline = pipelineFactory.getPipeline();
         assertEquals(ProtobufVarint32FrameDecoder.class, pipeline.get("frameDecoder").getClass());
-        assertEquals(ProtobufDecoder.class, pipeline.get("protobufDecoderRegistration").getClass());
-        assertEquals(ProtobufDecoder.class, pipeline.get("protobufDecoderLogin").getClass());
         assertEquals(ProtobufDecoder.class, pipeline.get("protobufDecoderMessage").getClass());
         assertEquals(ProtobufVarint32LengthFieldPrepender.class, pipeline.get("frameEncoder").getClass());
         assertEquals(ProtobufEncoder.class, pipeline.get("protobufEncoder").getClass());

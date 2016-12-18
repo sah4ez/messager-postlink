@@ -1,8 +1,0 @@
-package postlin;
-
-option java_package = "su.postlink.protoc";
-option java_outer_classname = "Login";
-
-message Body{
-    required string nickName = 1;
-}

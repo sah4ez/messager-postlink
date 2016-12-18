@@ -65,6 +65,7 @@ public class ServerTest extends Assert {
     @Test
     public void testSendMessage() {
         Message.Body.Builder msg = new Message.Body.Builder();
+        msg.setType(3);
         msg.setDate(System.currentTimeMillis());
         msg.setBody("hello");
         msg.setNickNameFrom(user1.getNickName());
@@ -77,6 +78,7 @@ public class ServerTest extends Assert {
     @Test
     public void testSendListUser(){
         Message.Body.Builder msg = new Message.Body.Builder();
+        msg.setType(3);
         msg.setDate(System.currentTimeMillis());
         msg.setBody("hello");
         msg.setNickNameFrom(user1.getNickName());

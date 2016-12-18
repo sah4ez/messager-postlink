@@ -19,52 +19,75 @@ public final class Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int64 date = 1;</code>
+     * <code>required int32 type = 1;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>required int32 type = 1;</code>
+     */
+    int getType();
+
+    /**
+     * <code>optional int64 date = 2;</code>
      */
     boolean hasDate();
     /**
-     * <code>required int64 date = 1;</code>
+     * <code>optional int64 date = 2;</code>
      */
     long getDate();
 
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     boolean hasBody();
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     java.lang.String getBody();
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     com.google.protobuf.ByteString
         getBodyBytes();
 
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickName = 4;</code>
+     */
+    boolean hasNickName();
+    /**
+     * <code>optional string nickName = 4;</code>
+     */
+    java.lang.String getNickName();
+    /**
+     * <code>optional string nickName = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getNickNameBytes();
+
+    /**
+     * <code>optional string nickNameFrom = 5;</code>
      */
     boolean hasNickNameFrom();
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickNameFrom = 5;</code>
      */
     java.lang.String getNickNameFrom();
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickNameFrom = 5;</code>
      */
     com.google.protobuf.ByteString
         getNickNameFromBytes();
 
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     boolean hasNickNameTo();
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     java.lang.String getNickNameTo();
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     com.google.protobuf.ByteString
         getNickNameToBytes();
@@ -81,8 +104,10 @@ public final class Message {
       super(builder);
     }
     public Body() {
+      type_ = 0;
       date_ = 0L;
       body_ = "";
+      nickName_ = "";
       nickNameFrom_ = "";
       nickNameTo_ = "";
     }
@@ -117,24 +142,35 @@ public final class Message {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              date_ = input.readInt64();
+              type_ = input.readInt32();
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 16: {
               bitField0_ |= 0x00000002;
-              body_ = bs;
+              date_ = input.readInt64();
               break;
             }
             case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              nickNameFrom_ = bs;
+              body_ = bs;
               break;
             }
             case 34: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
+              nickName_ = bs;
+              break;
+            }
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000010;
+              nickNameFrom_ = bs;
+              break;
+            }
+            case 50: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000020;
               nickNameTo_ = bs;
               break;
             }
@@ -163,31 +199,46 @@ public final class Message {
     }
 
     private int bitField0_;
-    public static final int DATE_FIELD_NUMBER = 1;
-    private long date_;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
     /**
-     * <code>required int64 date = 1;</code>
+     * <code>required int32 type = 1;</code>
      */
-    public boolean hasDate() {
+    public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int64 date = 1;</code>
+     * <code>required int32 type = 1;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
+    public static final int DATE_FIELD_NUMBER = 2;
+    private long date_;
+    /**
+     * <code>optional int64 date = 2;</code>
+     */
+    public boolean hasDate() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int64 date = 2;</code>
      */
     public long getDate() {
       return date_;
     }
 
-    public static final int BODY_FIELD_NUMBER = 2;
+    public static final int BODY_FIELD_NUMBER = 3;
     private volatile java.lang.Object body_;
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     public boolean hasBody() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     public java.lang.String getBody() {
       java.lang.Object ref = body_;
@@ -204,7 +255,7 @@ public final class Message {
       }
     }
     /**
-     * <code>required string body = 2;</code>
+     * <code>optional string body = 3;</code>
      */
     public com.google.protobuf.ByteString
         getBodyBytes() {
@@ -220,16 +271,58 @@ public final class Message {
       }
     }
 
-    public static final int NICKNAMEFROM_FIELD_NUMBER = 3;
-    private volatile java.lang.Object nickNameFrom_;
+    public static final int NICKNAME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object nickName_;
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickName = 4;</code>
      */
-    public boolean hasNickNameFrom() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+    public boolean hasNickName() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickName = 4;</code>
+     */
+    public java.lang.String getNickName() {
+      java.lang.Object ref = nickName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          nickName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string nickName = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNickNameBytes() {
+      java.lang.Object ref = nickName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nickName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NICKNAMEFROM_FIELD_NUMBER = 5;
+    private volatile java.lang.Object nickNameFrom_;
+    /**
+     * <code>optional string nickNameFrom = 5;</code>
+     */
+    public boolean hasNickNameFrom() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional string nickNameFrom = 5;</code>
      */
     public java.lang.String getNickNameFrom() {
       java.lang.Object ref = nickNameFrom_;
@@ -246,7 +339,7 @@ public final class Message {
       }
     }
     /**
-     * <code>required string nickNameFrom = 3;</code>
+     * <code>optional string nickNameFrom = 5;</code>
      */
     public com.google.protobuf.ByteString
         getNickNameFromBytes() {
@@ -262,16 +355,16 @@ public final class Message {
       }
     }
 
-    public static final int NICKNAMETO_FIELD_NUMBER = 4;
+    public static final int NICKNAMETO_FIELD_NUMBER = 6;
     private volatile java.lang.Object nickNameTo_;
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     public boolean hasNickNameTo() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     public java.lang.String getNickNameTo() {
       java.lang.Object ref = nickNameTo_;
@@ -288,7 +381,7 @@ public final class Message {
       }
     }
     /**
-     * <code>required string nickNameTo = 4;</code>
+     * <code>optional string nickNameTo = 6;</code>
      */
     public com.google.protobuf.ByteString
         getNickNameToBytes() {
@@ -310,19 +403,7 @@ public final class Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasDate()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasBody()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasNickNameFrom()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasNickNameTo()) {
+      if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -333,16 +414,22 @@ public final class Message {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt64(1, date_);
+        output.writeInt32(1, type_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, body_);
+        output.writeInt64(2, date_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, nickNameFrom_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, body_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, nickNameTo_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, nickName_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, nickNameFrom_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, nickNameTo_);
       }
       unknownFields.writeTo(output);
     }
@@ -354,16 +441,23 @@ public final class Message {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, date_);
+          .computeInt32Size(1, type_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, body_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, date_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, nickNameFrom_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, body_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, nickNameTo_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, nickName_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, nickNameFrom_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, nickNameTo_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -382,6 +476,11 @@ public final class Message {
       su.postlink.protoc.Message.Body other = (su.postlink.protoc.Message.Body) obj;
 
       boolean result = true;
+      result = result && (hasType() == other.hasType());
+      if (hasType()) {
+        result = result && (getType()
+            == other.getType());
+      }
       result = result && (hasDate() == other.hasDate());
       if (hasDate()) {
         result = result && (getDate()
@@ -391,6 +490,11 @@ public final class Message {
       if (hasBody()) {
         result = result && getBody()
             .equals(other.getBody());
+      }
+      result = result && (hasNickName() == other.hasNickName());
+      if (hasNickName()) {
+        result = result && getNickName()
+            .equals(other.getNickName());
       }
       result = result && (hasNickNameFrom() == other.hasNickNameFrom());
       if (hasNickNameFrom()) {
@@ -413,6 +517,10 @@ public final class Message {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasType()) {
+        hash = (37 * hash) + TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + getType();
+      }
       if (hasDate()) {
         hash = (37 * hash) + DATE_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
@@ -421,6 +529,10 @@ public final class Message {
       if (hasBody()) {
         hash = (37 * hash) + BODY_FIELD_NUMBER;
         hash = (53 * hash) + getBody().hashCode();
+      }
+      if (hasNickName()) {
+        hash = (37 * hash) + NICKNAME_FIELD_NUMBER;
+        hash = (53 * hash) + getNickName().hashCode();
       }
       if (hasNickNameFrom()) {
         hash = (37 * hash) + NICKNAMEFROM_FIELD_NUMBER;
@@ -548,14 +660,18 @@ public final class Message {
       }
       public Builder clear() {
         super.clear();
-        date_ = 0L;
+        type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        body_ = "";
+        date_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        nickNameFrom_ = "";
+        body_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        nickNameTo_ = "";
+        nickName_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
+        nickNameFrom_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        nickNameTo_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -583,17 +699,25 @@ public final class Message {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.date_ = date_;
+        result.type_ = type_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.body_ = body_;
+        result.date_ = date_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.nickNameFrom_ = nickNameFrom_;
+        result.body_ = body_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
+        }
+        result.nickName_ = nickName_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.nickNameFrom_ = nickNameFrom_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         result.nickNameTo_ = nickNameTo_;
         result.bitField0_ = to_bitField0_;
@@ -638,21 +762,29 @@ public final class Message {
 
       public Builder mergeFrom(su.postlink.protoc.Message.Body other) {
         if (other == su.postlink.protoc.Message.Body.getDefaultInstance()) return this;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
         if (other.hasDate()) {
           setDate(other.getDate());
         }
         if (other.hasBody()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           body_ = other.body_;
           onChanged();
         }
+        if (other.hasNickName()) {
+          bitField0_ |= 0x00000008;
+          nickName_ = other.nickName_;
+          onChanged();
+        }
         if (other.hasNickNameFrom()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000010;
           nickNameFrom_ = other.nickNameFrom_;
           onChanged();
         }
         if (other.hasNickNameTo()) {
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000020;
           nickNameTo_ = other.nickNameTo_;
           onChanged();
         }
@@ -662,16 +794,7 @@ public final class Message {
       }
 
       public final boolean isInitialized() {
-        if (!hasDate()) {
-          return false;
-        }
-        if (!hasBody()) {
-          return false;
-        }
-        if (!hasNickNameFrom()) {
-          return false;
-        }
-        if (!hasNickNameTo()) {
+        if (!hasType()) {
           return false;
         }
         return true;
@@ -696,33 +819,65 @@ public final class Message {
       }
       private int bitField0_;
 
-      private long date_ ;
+      private int type_ ;
       /**
-       * <code>required int64 date = 1;</code>
+       * <code>required int32 type = 1;</code>
        */
-      public boolean hasDate() {
+      public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int64 date = 1;</code>
+       * <code>required int32 type = 1;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>required int32 type = 1;</code>
+       */
+      public Builder setType(int value) {
+        bitField0_ |= 0x00000001;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 type = 1;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long date_ ;
+      /**
+       * <code>optional int64 date = 2;</code>
+       */
+      public boolean hasDate() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int64 date = 2;</code>
        */
       public long getDate() {
         return date_;
       }
       /**
-       * <code>required int64 date = 1;</code>
+       * <code>optional int64 date = 2;</code>
        */
       public Builder setDate(long value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         date_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int64 date = 1;</code>
+       * <code>optional int64 date = 2;</code>
        */
       public Builder clearDate() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         date_ = 0L;
         onChanged();
         return this;
@@ -730,13 +885,13 @@ public final class Message {
 
       private java.lang.Object body_ = "";
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public boolean hasBody() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public java.lang.String getBody() {
         java.lang.Object ref = body_;
@@ -753,7 +908,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public com.google.protobuf.ByteString
           getBodyBytes() {
@@ -769,50 +924,126 @@ public final class Message {
         }
       }
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public Builder setBody(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         body_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public Builder clearBody() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         body_ = getDefaultInstance().getBody();
         onChanged();
         return this;
       }
       /**
-       * <code>required string body = 2;</code>
+       * <code>optional string body = 3;</code>
        */
       public Builder setBodyBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         body_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object nickName_ = "";
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public boolean hasNickName() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public java.lang.String getNickName() {
+        java.lang.Object ref = nickName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            nickName_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNickNameBytes() {
+        java.lang.Object ref = nickName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nickName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public Builder setNickName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        nickName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public Builder clearNickName() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        nickName_ = getDefaultInstance().getNickName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string nickName = 4;</code>
+       */
+      public Builder setNickNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        nickName_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object nickNameFrom_ = "";
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public boolean hasNickNameFrom() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public java.lang.String getNickNameFrom() {
         java.lang.Object ref = nickNameFrom_;
@@ -829,7 +1060,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public com.google.protobuf.ByteString
           getNickNameFromBytes() {
@@ -845,36 +1076,36 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public Builder setNickNameFrom(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000010;
         nickNameFrom_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public Builder clearNickNameFrom() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000010);
         nickNameFrom_ = getDefaultInstance().getNickNameFrom();
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameFrom = 3;</code>
+       * <code>optional string nickNameFrom = 5;</code>
        */
       public Builder setNickNameFromBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000010;
         nickNameFrom_ = value;
         onChanged();
         return this;
@@ -882,13 +1113,13 @@ public final class Message {
 
       private java.lang.Object nickNameTo_ = "";
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public boolean hasNickNameTo() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public java.lang.String getNickNameTo() {
         java.lang.Object ref = nickNameTo_;
@@ -905,7 +1136,7 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public com.google.protobuf.ByteString
           getNickNameToBytes() {
@@ -921,36 +1152,36 @@ public final class Message {
         }
       }
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public Builder setNickNameTo(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000020;
         nickNameTo_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public Builder clearNickNameTo() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000020);
         nickNameTo_ = getDefaultInstance().getNickNameTo();
         onChanged();
         return this;
       }
       /**
-       * <code>required string nickNameTo = 4;</code>
+       * <code>optional string nickNameTo = 6;</code>
        */
       public Builder setNickNameToBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000020;
         nickNameTo_ = value;
         onChanged();
         return this;
@@ -1018,10 +1249,10 @@ public final class Message {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\007message\022\010postlink\"L\n\004Body\022\014\n\004date\030\001 \002(" +
-      "\003\022\014\n\004body\030\002 \002(\t\022\024\n\014nickNameFrom\030\003 \002(\t\022\022\n" +
-      "\nnickNameTo\030\004 \002(\tB\035\n\022su.postlink.protocB" +
-      "\007Message"
+      "\n\007message\022\010postlink\"l\n\004Body\022\014\n\004type\030\001 \002(" +
+      "\005\022\014\n\004date\030\002 \001(\003\022\014\n\004body\030\003 \001(\t\022\020\n\010nickNam" +
+      "e\030\004 \001(\t\022\024\n\014nickNameFrom\030\005 \001(\t\022\022\n\nnickNam" +
+      "eTo\030\006 \001(\tB\035\n\022su.postlink.protocB\007Message"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1040,7 +1271,7 @@ public final class Message {
     internal_static_postlink_Body_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_postlink_Body_descriptor,
-        new java.lang.String[] { "Date", "Body", "NickNameFrom", "NickNameTo", });
+        new java.lang.String[] { "Type", "Date", "Body", "NickName", "NickNameFrom", "NickNameTo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

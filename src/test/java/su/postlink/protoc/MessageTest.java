@@ -14,7 +14,7 @@ public class MessageTest extends Assert{
 
     @Before
     public void setUp() {
-        message.setDate(time)
+        message.setType(3).setDate(time)
                 .setBody("hello")
                 .setNickNameFrom("vasya")
                 .setNickNameTo("kolya").build();

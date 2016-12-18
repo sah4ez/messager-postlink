@@ -9,7 +9,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import su.postlink.protoc.Login;
 import su.postlink.protoc.Message;
 
 import java.net.InetSocketAddress;
@@ -144,11 +143,13 @@ public class Server {
         Channel channel = connected.get(fromUser);
 
         if (channel.isOpen()) {
-            connected.keySet().forEach(user -> {
-                Login.Body.Builder msg = new Login.Body.Builder();
+            allUser.forEach(user -> {
+                Message.Body.Builder msg = new Message.Body.Builder();
+                msg.setType(3);
                 msg.setNickName(user.getNickName());
                 synchronized (this) {
-                    channel.write(message);
+                    System.out.println(msg.build());
+                    channel.write(msg.build());
                 }
             });
             return true;

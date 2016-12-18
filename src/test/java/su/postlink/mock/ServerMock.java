@@ -31,6 +31,7 @@ public class ServerMock {
 
     public Server getMockSend(){
         msg = msg.toBuilder().
+                setType(3).
                 setBody("hello").
                 setDate(123123123).
                 setNickNameFrom("nick").
@@ -43,6 +44,7 @@ public class ServerMock {
 
     public Server getMockList(){
         msg = msg.toBuilder().
+                setType(3).
                 setBody("hello").
                 setDate(123123123).
                 setNickNameFrom("nick").

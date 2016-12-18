@@ -1,8 +1,0 @@
-package postlink;
-
-option java_package = "su.postlink.protoc";
-option java_outer_classname = "Registration";
-
-message Body{
-    required string nickName = 1;
-}
