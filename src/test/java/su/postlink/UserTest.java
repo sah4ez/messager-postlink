@@ -46,13 +46,13 @@ public class UserTest extends Assert {
         User userNext = new User(2, "name2");
         User userEq = new User(1, "name");
 
-        assertFalse(user.equals(i));
-        assertFalse(user.equals(null));
-        assertFalse(user.equals(userId));
-        assertFalse(user.equals(userNickName));
-        assertFalse(user.equals(userNext));
+        assertNotEquals(user, i);
+        assertNotEquals(null, user);
+        assertNotEquals(user, userId);
+        assertNotEquals(user, userNickName);
+        assertNotEquals(user, userNext);
 
-        assertTrue(user.equals(userEq));
+        assertEquals(user, userEq);
     }
 
     @Test

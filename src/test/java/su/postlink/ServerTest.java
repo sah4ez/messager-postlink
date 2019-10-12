@@ -55,7 +55,7 @@ public class ServerTest extends Assert {
             while (rs.next()) {
                 server.loadRegisterUser(rs);
             }
-        } catch (SQLException e) {
+        } catch (SQLException ignored) {
         }
         assertEquals(6, server.countRegisterUsers());
         assertEquals(-1, server.getRegisterUser("nickName6").getId().intValue());

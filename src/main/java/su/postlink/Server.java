@@ -26,11 +26,14 @@ public class Server {
 
     private ExecutorService innerExec = Executors.newFixedThreadPool(1);
 
-    private InetSocketAddress host = new InetSocketAddress("127.0.0.1", 8888);
-    private ChannelFuture channel;
+    private InetSocketAddress host;
+
+    {
+        new InetSocketAddress("127.0.0.1", 8888);
+    }
 
     public Server(String host, Integer port) {
-        this.host = new InetSocketAddress(host, port.intValue());
+        this.host = new InetSocketAddress(host, port);
     }
 
     public void run() throws Exception {
@@ -44,12 +47,10 @@ public class Server {
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ServerPipelineFactory(this));
-            channel = b.bind(new InetSocketAddress(host.getAddress(), host.getPort())).sync();
+            b.bind(new InetSocketAddress(host.getAddress(), host.getPort())).sync();
             System.out.println("Bind " + host.getAddress() + ":" + host.getPort());
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
-
         }
     }
 
